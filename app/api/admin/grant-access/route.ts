@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createUser, getUserByEmail } from "@/lib/storage";
+import { createUser, getUserByEmail } from "@/lib/db";
 import { createEmailTransporter } from "@/lib/email-helpers";
 import { cookies } from "next/headers";
 
 
-export async function POST(request: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
-    // Check for session cookie
+
     const cookieStore = await cookies();
     const session = cookieStore.get("admin_session");
     
@@ -16,8 +16,13 @@ export async function POST(request: NextRequest) {
         { status: 401 }
       );
     }
+    const body = await req.json();
+    const { email, role, password } = body;
 
-    const { email, password, role} = await request.json();
+    if (!email || !role || !password) {
+      return NextResponse.json({ error: "Email, role, and password are required" }, { status: 400 });
+    }
+ 
 
     if (!email || !email.includes("@") || !role) {
       return NextResponse.json(
@@ -42,10 +47,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create user with password
     const user = await createUser(email, password, role);
 
-    // Send access granted email
+     // Send access granted email
     try {
   
       const fromEmail = process.env.FROM_EMAIL || "noreply@eyriecare.com";
@@ -109,7 +113,7 @@ export async function POST(request: NextRequest) {
       // Continue even if email fails - user is still created
     }
 
-    return NextResponse.json(
+     return NextResponse.json(
       { 
         message: "Access granted successfully", 
         user: { email: user.email, createdAt: user.createdAt } 
@@ -124,4 +128,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-
