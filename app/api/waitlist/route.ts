@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { addToWaitlist } from "@/lib/db";
+import { addToWaitlist } from "@/lib/prisma";
 import { sendWaitlistNotification, sendWaitlistConfirmation } from "@/lib/email";
 
 // export async function POST(request: NextRequest) {
@@ -93,7 +93,7 @@ export async function POST(req: NextRequest) {
 
 export async function GET() {
   try {
-    const waitlist = await import("@/lib/db").then((m) => m.getWaitlist());
+    const waitlist = await import("@/lib/prisma").then((m) => m.getWaitlist());
     return NextResponse.json({ waitlist });
   } catch (err) {
     console.error("Error fetching waitlist:", err);

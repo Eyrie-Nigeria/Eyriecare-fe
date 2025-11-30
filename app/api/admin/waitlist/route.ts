@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getWaitlist } from "@/lib/db";
+import { getWaitlist } from "@/lib/prisma";
 import { cookies } from "next/headers";
 
 export async function GET(request: NextRequest) {

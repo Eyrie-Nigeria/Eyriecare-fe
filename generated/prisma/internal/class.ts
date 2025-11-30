@@ -19,8 +19,8 @@ const config: runtime.GetPrismaClientConfig = {
   "previewFeatures": [],
   "clientVersion": "7.0.1",
   "engineVersion": "f09f2815f091dbba658cdcd2264306d88bb5bda6",
-  "activeProvider": "sqlite",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\" // or your preferred output\n}\n\ndatasource db {\n  provider = \"sqlite\" // or \"postgresql\" / \"mysql\" depending on your DB\n  // Notice: **no `url = ...` here anymore**\n}\n\nmodel WaitlistEntry {\n  id            Int       @id @default(autoincrement())\n  email         String    @unique\n  role          String\n  createdAt     DateTime  @default(now())\n  grantedAccess Boolean   @default(false)\n  grantedAt     DateTime?\n}\n\nmodel User {\n  id        Int       @id @default(autoincrement())\n  email     String    @unique\n  role      String\n  password  String\n  createdAt DateTime  @default(now())\n  grantedAt DateTime\n  lastLogin DateTime?\n}\n",
+  "activeProvider": "postgresql",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\" // or your preferred output\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel WaitlistEntry {\n  id            Int       @id @default(autoincrement())\n  email         String    @unique\n  role          String\n  createdAt     DateTime  @default(now())\n  grantedAccess Boolean   @default(false)\n  grantedAt     DateTime?\n}\n\nmodel User {\n  id        Int       @id @default(autoincrement())\n  email     String    @unique\n  role      String\n  password  String\n  createdAt DateTime  @default(now())\n  grantedAt DateTime\n  lastLogin DateTime?\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -37,10 +37,10 @@ async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Modul
 }
 
 config.compilerWasm = {
-  getRuntime: async () => await import("@prisma/client/runtime/query_compiler_bg.sqlite.mjs"),
+  getRuntime: async () => await import("@prisma/client/runtime/query_compiler_bg.postgresql.mjs"),
 
   getQueryCompilerWasmModule: async () => {
-    const { wasm } = await import("@prisma/client/runtime/query_compiler_bg.sqlite.wasm-base64.mjs")
+    const { wasm } = await import("@prisma/client/runtime/query_compiler_bg.postgresql.wasm-base64.mjs")
     return await decodeBase64AsWasm(wasm)
   }
 }

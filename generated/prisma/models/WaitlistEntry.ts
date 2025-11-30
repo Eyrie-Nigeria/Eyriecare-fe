@@ -1076,6 +1076,7 @@ export type WaitlistEntryCreateManyArgs<ExtArgs extends runtime.Types.Extensions
    * The data used to create many WaitlistEntries.
    */
   data: Prisma.WaitlistEntryCreateManyInput | Prisma.WaitlistEntryCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1094,6 +1095,7 @@ export type WaitlistEntryCreateManyAndReturnArgs<ExtArgs extends runtime.Types.E
    * The data used to create many WaitlistEntries.
    */
   data: Prisma.WaitlistEntryCreateManyInput | Prisma.WaitlistEntryCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**

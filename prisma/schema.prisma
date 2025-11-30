@@ -4,8 +4,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"   // or "postgresql" / "mysql" depending on your DB
-  // Notice: **no `url = ...` here anymore**
+  provider = "postgresql" 
 }
 
 model WaitlistEntry {

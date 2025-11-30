@@ -1,22 +1,26 @@
 -- CreateTable
 CREATE TABLE "WaitlistEntry" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
     "role" TEXT NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "grantedAccess" BOOLEAN NOT NULL DEFAULT false,
-    "grantedAt" DATETIME
+    "grantedAt" TIMESTAMP(3),
+
+    CONSTRAINT "WaitlistEntry_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "User" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
     "role" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "grantedAt" DATETIME NOT NULL,
-    "lastLogin" DATETIME
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "grantedAt" TIMESTAMP(3) NOT NULL,
+    "lastLogin" TIMESTAMP(3),
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
