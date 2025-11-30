@@ -122,7 +122,7 @@ export function Navbar() {
               >
                 Join Waitlist
               </Button>
-              <Link href="/dashboard" className="w-full">
+              <Link href="/login?redirect=/admin" className="w-full">
                 <Button
                   className="w-full rounded-full bg-eyrie-blue hover:bg-eyrie-blue/90"
                   onClick={() => setIsMobileMenuOpen(false)}

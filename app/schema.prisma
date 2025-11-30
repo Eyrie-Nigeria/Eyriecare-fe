@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"   // or your preferred output
+}
+
+datasource db {
+  provider = "postgresql" 
+}
+
+model WaitlistEntry {
+  id            Int      @id @default(autoincrement())
+  email         String   @unique
+  role          String
+  createdAt     DateTime @default(now())
+  grantedAccess Boolean  @default(false)
+  grantedAt     DateTime?
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  role      String
+  password  String
+  createdAt DateTime @default(now())
+  grantedAt DateTime
+  lastLogin DateTime?
+}

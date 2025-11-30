@@ -25,18 +25,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.variable} ${sora.variable} font-sans antialiased`}
-      >
+      <body className="font-sans bg-warm-white text-deep-navy">
         {children}
       </body>
     </html>
   );
 }
+
