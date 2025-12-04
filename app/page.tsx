@@ -23,6 +23,7 @@ import {
   BookOpen,
   Zap,
 } from "lucide-react";
+import { GA_EDD_Calculator } from "@/components/GaCalculator";
 
 export default function Home() {
   const scrollToWaitlist = () => {
@@ -89,6 +90,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <GA_EDD_Calculator />
 
       {/* Problem Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
