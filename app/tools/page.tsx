@@ -148,45 +148,46 @@ export default function ToolsPage() {
           {
             title: "Pediatric Growth Chart (WHO Percentile)",
             content: (
-              <>
-                <Input
-                  type="number"
-                  placeholder="Age (months)"
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                  className="mt-3"
-                />
+//               <>
+//                 <Input
+//                   type="number"
+//                   placeholder="Age (months)"
+//                   value={age}
+//                   onChange={(e) => setAge(e.target.value)}
+//                   className="mt-3"
+//                 />
 
-                <select
-                  value={sex}
-                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-  setSex(e.target.value as Sex)
-}
+//                 <select
+//                   value={sex}
+//                   onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+//   setSex(e.target.value as Sex)
+// }
 
-                  className="w-full mt-3 p-2 border rounded-lg"
-                >
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
+//                   className="w-full mt-3 p-2 border rounded-lg"
+//                 >
+//                   <option value="male">Male</option>
+//                   <option value="female">Female</option>
+//                 </select>
 
-                <Input
-                  type="number"
-                  placeholder="Weight (kg)"
-                  value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
-                  className="mt-3"
-                />
+//                 <Input
+//                   type="number"
+//                   placeholder="Weight (kg)"
+//                   value={weight}
+//                   onChange={(e) => setWeight(e.target.value)}
+//                   className="mt-3"
+//                 />
 
-                <Button onClick={runGrowth} className="mt-4">
-                  Calculate Percentile
-                </Button>
+//                 <Button onClick={runGrowth} className="mt-4">
+//                   Calculate Percentile
+//                 </Button>
 
-                {percentile !== null && (
-                  <p className="mt-4 text-gray-700 font-medium">
-                    Weight-for-Age Percentile: {percentile}th %
-                  </p>
-                )}
-              </>
+//                 {percentile !== null && (
+//                   <p className="mt-4 text-gray-700 font-medium">
+//                     Weight-for-Age Percentile: {percentile}th %
+//                   </p>
+//                 )}
+              //               </>
+              <p className="text-gray-600">Pediatric Growth Chart tool coming soon!</p>
             )
           }
         ].map((item, index) => (
