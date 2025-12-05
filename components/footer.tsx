@@ -1,12 +1,18 @@
-// components/FeatureCard.tsx
-import { LucideIcon } from "lucide-react";
+// components/Footer.tsx
+import Link from "next/link";
 
-export function FeatureCard({ icon: Icon, title, description }: { icon: LucideIcon; title: string; description: string }) {
+export default function Footer() {
   return (
-    <div className="border rounded-xl p-6 hover:shadow-md transition">
-      <Icon className="h-6 w-6 text-eyrie-blue mb-4" />
-      <h3 className="font-semibold text-lg mb-2">{title}</h3>
-      <p className="text-gray-600 text-sm">{description}</p>
-    </div>
+    <footer className="border-t py-8 mt-20">
+      <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between text-sm text-gray-600">
+        <p>© {new Date().getFullYear()} EyrieCare</p>
+        <div className="flex items-center space-x-4">
+          <Link href="/" className="hover:text-eyrie-blue">Terms</Link>
+          <Link href="/" className="hover:text-eyrie-blue">Privacy</Link>
+          <Link href="https://linkedin.com/company/eyrie" target="_blank" className="hover:text-eyrie-blue">LinkedIn</Link>
+        </div>
+      </div>
+    </footer>
   );
 }
+
