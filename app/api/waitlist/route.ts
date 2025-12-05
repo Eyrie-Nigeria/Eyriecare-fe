@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { addToWaitlist } from "@/lib/prisma";
+import { addToWaitlist, prisma } from "@/lib/prisma";
 import { sendWaitlistNotification, sendWaitlistConfirmation } from "@/lib/email";
+import { Check } from 'lucide-react';
 
 // export async function POST(request: NextRequest) {
 //   try {
@@ -58,7 +59,12 @@ export async function POST(req: NextRequest) {
     if (!email || !role) {
       return NextResponse.json({ error: "Email and role are required" }, { status: 400 });
     }
-
+    const CheckEntry = await prisma.waitlistEntry.findUnique({
+        where: { email: email.toLowerCase() },
+      });
+    
+    if (CheckEntry) return NextResponse.json({ error: "Email already on waitlist" }, { status: 400 });
+    
     const entry = await addToWaitlist(email, role);
      const timestamp = new Date().toLocaleString("en-US", {
       dateStyle: "medium",
