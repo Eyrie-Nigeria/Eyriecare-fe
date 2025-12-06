@@ -1,37 +1,72 @@
-// components/Hero.tsx
 "use client";
 
 import { motion } from "framer-motion";
-import ProductScreenshot from "./ProductScreenshot";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 
 export default function Hero() {
-  const scrollToWaitlist = () => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" });
+  const scrollToWaitlist = () =>
+    document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <section className="pt-24 pb-12 bg-gradient-to-b from-white to-sky-mist/30">
+    <section className="pt-28 pb-20 bg-white">
       <div className="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
-        <motion.div initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
-          <div className="inline-flex items-center gap-2 bg-clinical-teal/10 text-clinical-teal text-sm font-medium px-3 py-1 rounded-full mb-4">
-            AI Clinical Intelligence
+        
+        {/* LEFT: Text */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="space-y-6"
+        >
+          <div className="inline-block bg-clinical-teal/10 text-clinical-teal text-sm font-medium px-3 py-1 rounded-full">
+            AI for Clinical Reasoning
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-heading font-bold text-deep-navy leading-tight mb-4">
-            AI clinical reasoning and documentation — for clinicians and students.
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+            AI that helps clinicians think, document, and decide — in seconds.
           </h1>
 
-          <p className="text-lg text-gray-700 mb-6 max-w-xl">
-            EyrieCare captures histories, generates structured notes, and suggests evidence-based differentials — in seconds.
+          <p className="text-lg text-gray-600 max-w-xl">
+            EyrieCare captures patient history, structures clinical notes, and suggests differential diagnoses to save time and improve accuracy.
           </p>
 
-          <div className="flex gap-3">
-            <Button className="rounded-full bg-eyrie-blue text-white" onClick={scrollToWaitlist}>Join Waitlist</Button>
-            <Button className="rounded-full border" onClick={() => (window.location.href = "/tools")}>Free Tools</Button>
+          <div className="flex gap-4">
+            <Button
+              className="rounded-full bg-eyrie-blue px-6 py-5 text-white hover:bg-eyrie-blue/90"
+              onClick={scrollToWaitlist}
+            >
+              Join the waitlist
+            </Button>
+
+            <Button
+              variant="outline"
+              className="rounded-full px-6 py-5"
+              onClick={() => window.location.href = "/tools"}
+            >
+              Try free tools
+            </Button>
+          </div>
+
+          <div className="text-sm text-gray-500">
+            Built for clinicians • Trusted by medical students
           </div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
-          <ProductScreenshot title="Clinical Documentation Interface" description="AI-assisted SOAP note generation" />
+        {/* RIGHT: Demo Video */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="bg-gray-50 border rounded-xl overflow-hidden shadow-sm aspect-video"
+        >
+          <video
+            src="/demo.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          />
         </motion.div>
       </div>
     </section>
