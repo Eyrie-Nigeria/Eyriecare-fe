@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
 // Simple admin credentials - in production, use environment variables
-const ADMIN_EMAIL = process.env.ADMIN_LOGIN_EMAIL || "admin";
-const ADMIN_PASSWORD = process.env.ADMIN_LOGIN_PASSWORD || "password";
+const STUDENT_EMAIL = process.env.STUDENT_LOGIN_EMAIL || "student";
+const STUDENT_PASSWORD = process.env.STUDENT_LOGIN_PASSWORD || "password";
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,13 +19,13 @@ export async function POST(request: NextRequest) {
     // Simple credential check
     // Accepts "admin", "admin@eyriecare.com", or any email starting with "admin"
     const normalizedEmail = email.toLowerCase().trim();
-    const isAdminEmail = 
-      normalizedEmail === ADMIN_EMAIL.toLowerCase() ||
-      normalizedEmail === "admin@eyriecare.com" ||
-      normalizedEmail === "admin" ||
-      normalizedEmail.startsWith("admin@");
+    const isStudentEmail = 
+      normalizedEmail === STUDENT_EMAIL.toLowerCase() ||
+      normalizedEmail === "student@eyriecare.com" ||
+      normalizedEmail === "student" ||
+      normalizedEmail.startsWith("student@");
 
-    if (!isAdminEmail || password !== ADMIN_PASSWORD) {
+    if (!isStudentEmail || password !== STUDENT_PASSWORD) {
       return NextResponse.json(
         { error: "Invalid credentials" },
         { status: 401 }
